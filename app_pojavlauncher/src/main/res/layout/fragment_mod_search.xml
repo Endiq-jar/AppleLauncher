@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0D0D0D"
+    android:orientation="vertical">
+
+    <!-- ── HEADER (back + title + search bar) ── -->
+    <LinearLayout
+        android:id="@+id/mod_store_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#161212"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <!-- Row: back + title -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <ImageButton
+                android:id="@+id/mod_store_back"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back_white"
+                android:contentDescription="@string/global_back"
+                android:tint="#E53935" />
+
+            <TextView
+                android:id="@+id/mod_store_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:text="Download Mods"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Row: search + filter -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="8dp">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/search_bar_bg">
+
+                <EditText
+                    android:id="@+id/search_mod_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:hint="Search mods..."
+                    android:textColorHint="#666666"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_gravity="start|center_vertical"
+                    android:src="@drawable/ic_search"
+                    android:tint="#666666" />
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/search_mod_filter"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/background_card"
+                android:padding="7dp"
+                android:src="@drawable/ic_filter"
+                android:tint="#E53935" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Progress bar -->
+    <ProgressBar
+        android:id="@+id/search_mod_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:progressTint="#E53935"
+        android:visibility="gone" />
+
+    <!-- Mod list -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_mod_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingVertical="12dp"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="24dp"
+        android:scrollbars="none" />
+
+    <!-- Status text -->
+    <TextView
+        android:id="@+id/search_mod_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#B0B0B0"
+        android:visibility="gone"
+        android:text="No results found." />
+
+</LinearLayout>

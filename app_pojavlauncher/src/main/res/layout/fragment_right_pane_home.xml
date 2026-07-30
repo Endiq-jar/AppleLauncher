@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_app_gradient">
+
+    <!-- Custom wallpaper — invisible by default, loaded dynamically -->
+    <ImageView
+        android:id="@+id/right_pane_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        android:contentDescription="@null" />
+
+    <!-- ══════════════════ Everything scrolls together as ONE column ══════════════════
+         This is required because the header (Hero + Quick Stats + System Info) is
+         taller than a landscape phone viewport — without a shared scroller, content
+         below the fold was unreachable and the FAB ended up overlapping the stats row. -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/dashboard_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- Hero card -->
+            <LinearLayout
+                android:id="@+id/card_hero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_hero_card"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_hero_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WELCOME BACK"
+                    android:textColor="@color/accent_primary"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08" />
+
+                <TextView
+                    android:id="@+id/tv_hero_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Player"
+                    android:textColor="@color/text_primary_white"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_hero_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Ready to play Minecraft? Choose your profile and jump into your adventure."
+                    android:textColor="@color/text_secondary_light"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btn_hero_launch"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/bg_hero_launch_button"
+                        android:clickable="true"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_play_arrow"
+                            android:tint="@color/text_primary_white"
+                            android:contentDescription="@null" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="LAUNCH"
+                            android:textColor="@color/text_primary_white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_hero_version"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="10dp"
+                        android:minWidth="110dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="12dp"
+                        android:background="@drawable/bg_hero_launch_pill"
+                        android:text="No profile"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:maxLines="1" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Quick Stats row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/stat_profiles"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_stat_chip"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_folder"
+                        android:tint="@color/accent_primary"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_profiles_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="0"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Profiles"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/stat_mods"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="6dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_stat_chip"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_download_box"
+                        android:tint="@color/accent_primary"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_mods_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="0"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mods installed"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/stat_memory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/bg_stat_chip"
+                    android:padding="10dp">
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_setting_ram"
+                        android:tint="@color/accent_primary"
+                        android:contentDescription="@null" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_memory_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="0%"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_stat_memory_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Memory used"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- System Info card -->
+            <LinearLayout
+                android:id="@+id/card_system_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_system_info_card"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SYSTEM INFO"
+                    android:textColor="@color/accent_primary"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="6dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Java"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sysinfo_java"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="—"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Android"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sysinfo_os"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="—"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Architecture"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sysinfo_arch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="—"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Memory"
+                        android:textColor="@color/text_secondary_light"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_sysinfo_memory"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="—"
+                        android:textColor="@color/text_primary_white"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="2dp"
+                android:text="RECENT PROFILES"
+                android:textColor="@color/accent_primary"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08" />
+
+            <!-- Profile Cards — nested scrolling disabled so this scrolls together
+                 with the header inside the NestedScrollView above, rather than fighting
+                 it for its own separate internal scroll. -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home_profiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Soft accent glow behind the Create Profile button — floats fixed above the scroll -->
+    <View
+        android:id="@+id/fab_create_profile_glow"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/glow_accent_radial"
+        app:layout_constraintBottom_toBottomOf="@id/fab_create_profile"
+        app:layout_constraintTop_toTopOf="@id/fab_create_profile"
+        app:layout_constraintStart_toStartOf="@id/fab_create_profile"
+        app:layout_constraintEnd_toEndOf="@id/fab_create_profile" />
+
+    <!-- Floating "+" Create Profile button (bottom-end corner, standard FAB placement —
+         avoids sitting on top of centered content like the stats row) -->
+    <FrameLayout
+        android:id="@+id/fab_create_profile"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_fab_create_profile"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_add"
+            android:tint="@color/bg_primary"
+            android:contentDescription="Create Profile" />
+    </FrameLayout>
+
+    <!-- Refresh Profiles button (bottom-start corner, mirrors the FAB) -->
+    <FrameLayout
+        android:id="@+id/btn_refresh_profiles"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/background_image_rounded"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_redo"
+            android:tint="@color/accent_primary"
+            android:contentDescription="Refresh Profiles" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
