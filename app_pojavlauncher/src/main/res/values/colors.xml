@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ══════════════════════════════════════════════════════════════════
+         APPLE LAUNCHER — PALETTE
+         Source of truth. All tokens below point back to these.
+         ══════════════════════════════════════════════════════════════════ -->
+    <color name="bl_background">#0B0B0B</color>          <!-- Rich Black -->
+    <color name="bl_surface">#161212</color>              <!-- Charcoal -->
+    <color name="bl_primary_accent">#E53935</color>       <!-- Blood Red -->
+    <color name="bl_secondary_accent">#FF5252</color>     <!-- Crimson -->
+    <color name="bl_highlight">#FF8A80</color>            <!-- Coral Red -->
+    <color name="bl_button_hover">#C62828</color>         <!-- Dark Crimson -->
+    <color name="bl_button_pressed">#B71C1C</color>       <!-- Deep Red -->
+    <color name="bl_text">#F5F5F5</color>                 <!-- White -->
+    <color name="bl_text_secondary">#B0B0B0</color>       <!-- Gray -->
+    <color name="bl_divider">#2A0F0F</color>              <!-- Dark Red -->
+    <color name="bl_border">#2B2B2B</color>               <!-- Dark Gray -->
+    <color name="bl_error">#FF1744</color>                <!-- Bright Red -->
+    <color name="bl_success">#00C853</color>              <!-- Emerald -->
+    <color name="bl_glow">#4DE53935</color>                <!-- Glow, ~30% opacity -->
+    <color name="bl_glow_soft">#40E53935</color>           <!-- Glow, 25% opacity -->
+    <color name="bl_glow_strong">#59E53935</color>         <!-- Glow, 35% opacity -->
+
+    <!-- Gradient stops (used by drawables, referenced here for consistency) -->
+    <color name="bl_gradient_launch_start">#8B0000</color>
+    <color name="bl_gradient_launch_mid">#C62828</color>
+    <color name="bl_gradient_launch_end">#FF5252</color>
+    <color name="bl_gradient_bg_start">#050505</color>
+    <color name="bl_gradient_bg_mid">#0B0B0B</color>
+    <color name="bl_gradient_bg_end">#161212</color>
+
+    <!-- Control Buttons -->
+    <color name="control_button_color">#33E53935</color>
+    <color name="control_button_pressed_color">#66E53935</color>
+
+    <!-- Main Button -->
+    <color name="minebutton_color">#E53935</color>
+    <color name="cu_bg_app">#0B0B0B</color>
+    <color name="cu_bg_status_bar">#0B0B0B</color>
+    <color name="cu_bg_bottom_bar">#0B0B0B</color>
+    <color name="cu_divider">#2A0F0F</color>
+
+    <!-- BACKGROUND SYSTEM (DARK THEME) -->
+    <color name="background_app">#0B0B0B</color>
+    <color name="background_overlay">#161212</color>
+    <color name="background_surface">#161212</color>
+    <color name="divider">#2A0F0F</color>
+    <color name="background_status_bar">#0B0B0B</color>
+    <color name="background_bottom_bar">#161212</color>
+
+    <!-- TEXT -->
+    <color name="primary_text">#F5F5F5</color>
+    <color name="secondary_text">#B0B0B0</color>
+
+    <!-- ── Midnight Blue preset (unused, kept for compatibility) ───────── -->
+    <color name="mb_bg_app">#0D1B2A</color>
+    <color name="mb_bg_bottom_bar">#1B2A3B</color>
+    <color name="mb_bg_status_bar">#0A1522</color>
+    <color name="mb_divider">#1E3A5F</color>
+    <color name="mb_accent">#1E90FF</color>
+    <color name="mb_text_primary">#E8EFF5</color>
+    <color name="mb_text_secondary">#8BAABF</color>
+
+    <!-- ── Forest Green preset (unused, kept for compatibility) ─────────  -->
+    <color name="fg_bg_app">#0F1F0F</color>
+    <color name="fg_bg_bottom_bar">#1A2E1A</color>
+    <color name="fg_bg_status_bar">#0C1A0C</color>
+    <color name="fg_divider">#2D4A2D</color>
+    <color name="fg_accent">#4CAF50</color>
+    <color name="fg_text_primary">#E8F5E9</color>
+    <color name="fg_text_secondary">#9CCC9C</color>
+
+    <!-- ── Crimson preset — now the active palette ─────────── -->
+    <color name="cr_bg_app">#0B0B0B</color>
+    <color name="cr_bg_bottom_bar">#161212</color>
+    <color name="cr_bg_status_bar">#0B0B0B</color>
+    <color name="cr_divider">#2A0F0F</color>
+    <color name="cr_accent">#E53935</color>
+    <color name="cr_text_primary">#F5F5F5</color>
+    <color name="cr_text_secondary">#B0B0B0</color>
+
+    <!-- ── Amethyst preset (unused, kept for compatibility) ─────────────  -->
+    <color name="am_bg_app">#13091A</color>
+    <color name="am_bg_bottom_bar">#1E1028</color>
+    <color name="am_bg_status_bar">#0F0714</color>
+    <color name="am_divider">#3A1F52</color>
+    <color name="am_accent">#9C27B0</color>
+    <color name="am_text_primary">#F3E5F5</color>
+    <color name="am_text_secondary">#CBA8D4</color>
+
+    <!-- ── Arctic preset (unused, kept for compatibility) ────────────────  -->
+    <color name="ar_bg_app">#0E1A20</color>
+    <color name="ar_bg_bottom_bar">#162530</color>
+    <color name="ar_bg_status_bar">#0B1418</color>
+    <color name="ar_divider">#1E3A47</color>
+    <color name="ar_accent">#00BCD4</color>
+    <color name="ar_text_primary">#E0F7FA</color>
+    <color name="ar_text_secondary">#80C8D4</color>
+
+    <!-- ── Apple Launcher Colors (Dark Red Theme) ── -->
+    <color name="bg_primary">#0B0B0B</color>
+    <color name="bg_launcher_dark">#0B0B0B</color>
+    <color name="bg_sidebar">#0B0B0B</color>
+    <color name="bg_header">#161212</color>
+    <color name="bg_bottom_bar">#161212</color>
+    <color name="bg_card">#161212</color>
+    <color name="bg_card_dark">#1E1717</color>
+    <color name="bg_elevated">#1E1717</color>
+    <color name="bg_client_features">#1A0A0A</color>
+    <color name="bg_client_features_card">#2A0F0F</color>
+
+    <color name="accent_primary">#E53935</color>
+    <color name="accent_light">#FF8A80</color>
+    <color name="accent_purple">#FF5252</color>
+    <color name="accent_purple_client">#FF8A80</color>
+    <color name="accent_purple_deep">#B71C1C</color>
+    <color name="accent_bg_subtle">#2A0F0F</color>
+    <color name="accent_border">#E53935</color>
+
+    <color name="accent_green">#E53935</color>
+    <color name="accent_green_light">#FF8A80</color>
+    <color name="accent_green_bg">#2A0F0F</color>
+    <color name="accent_green_border">#E53935</color>
+
+    <color name="text_primary_white">#F5F5F5</color>
+    <color name="text_primary_light">#F5F5F5</color>
+    <color name="text_primary">#FFF5F5F5</color>
+    <color name="text_secondary_light">#B0B0B0</color>
+    <color name="text_secondary_dim">#7A7A7A</color>
+    <color name="text_secondary">#8FB0B0B0</color>
+
+    <color name="border_default">#2B2B2B</color>
+    <color name="border_hover">#E53935</color>
+    <color name="divider_color">#2A0F0F</color>
+
+    <color name="play_btn_bg">#E53935</color>
+    <color name="play_btn_text">#F5F5F5</color>
+
+    <color name="settings_bg">#0B0B0B</color>
+    <color name="card_bg">#161212</color>
+    <color name="card_bg_pressed">#1E1717</color>
+    <color name="neon_green">#E53935</color>
+    <color name="neon_green_dim">#4DE53935</color>
+    <color name="stroke_neon">#4DE53935</color>
+    <color name="like_active">#FF1744</color>
+    <color name="installed_color">#00C853</color>
+
+    <color name="bg_nav_item_active">#AAE53935</color>
+</resources>
