@@ -1,0 +1,101 @@
+name: Apple Launcher Debug Build
+
+on:
+  push:
+    branches-ignore:
+      - 'l10n_v3_openjdk'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: "recursive"
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Download JRE 8
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          workflow: build.yml
+          path: app_pojavlauncher/src/main/assets/components/jre
+          workflow_conclusion: success
+          repo: AngelAuraMC/angelauramc-openjdk-build
+          branch: buildjre8
+          name: jre8-pojav
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          validate-wrappers: false
+          gradle-version: "8.11"
+          cache-read-only: ${{ github.event_name == 'pull_request' }}
+
+      - name: Update language list
+        run: |
+          chmod +x ./scripts/languagelist_updater.sh
+          ./scripts/languagelist_updater.sh
+          mkdir -p out
+
+      - name: Build Debug APK
+        run: |
+          ./gradlew :app_pojavlauncher:assembleDebug \
+            -PbuildVersionCode=${{ github.run_number }} \
+            --no-daemon --stacktrace
+
+          DEBUG_APK=$(find app_pojavlauncher/build/outputs/apk/debug -name "*.apk" | head -n 1)
+          if [ -n "$DEBUG_APK" ]; then
+            cp "$DEBUG_APK" out/AppleLauncher-DEBUG.apk
+            md5sum out/AppleLauncher-DEBUG.apk > out/AppleLauncher-DEBUG.md5
+          else
+            echo "ERROR: Debug APK not found" && exit 1
+          fi
+
+      - name: APK size report
+        run: |
+          echo "## APK Size Report" >> $GITHUB_STEP_SUMMARY
+          echo "| File | Size |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|" >> $GITHUB_STEP_SUMMARY
+          for f in out/*.apk; do
+            SIZE=$(du -sh "$f" | cut -f1)
+            echo "| $(basename $f) | $SIZE |" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: apple-launcher-debug-${{ github.run_number }}
+          path: out/*
+          retention-days: 30
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        with:
+          artifacts: "out/AppleLauncher-DEBUG.apk,out/AppleLauncher-DEBUG.md5"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: "v2.${{ github.run_number }}"
+          name: "Apple Launcher — Build ${{ github.run_number }}"
+          body: |
+            ## Apple Launcher — Build ${{ github.run_number }}
+
+            **Commit:** `${{ github.sha }}`
+
+            Signed debug build — installs directly, no manual signing needed.
+            The in-app updater checks this release feed automatically on launch.
+          allowUpdates: true
+          omitBodyDuringUpdate: false
+          replacesArtifacts: true
