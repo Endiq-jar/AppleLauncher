@@ -201,6 +201,14 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
                         mmf.reloadSpinner();
                     } else {
                         Tools.backToMainMenu(requireActivity());
+                        // backToMainMenu() only pops the back stack — it does not tell the
+                        // home screen to re-read the saved profile list, so a freshly saved
+                        // version silently failed to show up. Explicitly refresh it here.
+                        Fragment rootFrag = requireActivity().getSupportFragmentManager()
+                                .findFragmentByTag("ROOT");
+                        if (rootFrag instanceof MainMenuFragment) {
+                            ((MainMenuFragment) rootFrag).reloadSpinner();
+                        }
                     }
                 });
             });
