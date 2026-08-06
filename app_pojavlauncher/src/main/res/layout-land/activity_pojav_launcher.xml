@@ -300,6 +300,7 @@
             android:layout_height="52dp"
             android:layout_marginBottom="6dp"
             android:dropDownWidth="wrap_content"
+            android:dropDownHeight="220dp"
             android:dropDownVerticalOffset="4dp"
             android:dropDownHorizontalOffset="60dp"
             android:background="@drawable/bg_account_spinner" />
