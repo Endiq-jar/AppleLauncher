@@ -191,6 +191,15 @@ public class ProfileEditorFragment extends Fragment implements CropperUtils.Crop
             mBgExecutor.execute(() -> {
                 LauncherProfiles.mainProfileJson.profiles.put(mProfileKey, mTempProfile);
                 LauncherProfiles.write();
+                // A profile that isn't marked "current" can't be found by
+                // LauncherProfiles.getCurrentProfile() — which is what the download/launch
+                // pipeline (MinecraftDownloader -> NewJREUtil) looks up. Newly created
+                // profiles were never marked current, so launching them right after saving
+                // threw "The current profile stopped existing". Always point current-profile
+                // at whatever was just saved.
+                LauncherPreferences.DEFAULT_PREF.edit()
+                        .putString(LauncherPreferences.PREF_KEY_CURRENT_PROFILE, mProfileKey)
+                        .apply();
                 ExtraCore.setValue(ExtraConstants.REFRESH_VERSION_SPINNER, mProfileKey);
                 mMainHandler.post(() -> {
                     if (!isAdded()) return;
