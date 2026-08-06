@@ -22,6 +22,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Scrollable section: logo + nav icons. Wrapped in a ScrollView so that
+             Add Account / account spinner / Settings below can never get pushed off
+             the bottom of the screen, no matter how many nav icons this list grows to. -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none"
+            android:fillViewport="false"
+            android:overScrollMode="never">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
         <!-- CS Logo (clickable → home) -->
         <FrameLayout
             android:id="@+id/btn_home_logo"
@@ -256,11 +272,11 @@
             android:background="@drawable/bg_client_features_btn"
             android:padding="0dp" />
 
-        <!-- Spacer pushes account + settings to the bottom -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+        </LinearLayout>
+        </ScrollView>
+
+        <!-- Pinned footer: always visible regardless of how tall the scrollable
+             nav list above is, or how short the screen is. -->
 
         <!-- Add Account Button -->
         <ImageButton
