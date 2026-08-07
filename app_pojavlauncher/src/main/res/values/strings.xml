@@ -264,6 +264,7 @@
     <string name="folder_fragment_select">Select folder</string>
     <string name="main_login_done">Login done</string>
     <string name="main_add_account">Add account</string>
+    <string name="main_select_account">Select account</string>
     <string name="tasks_ongoing">Tasks are in progress, please wait</string>
     <string name="no_saved_accounts">No saved accounts</string>
     <string name="mc_download_failed">Failed to download Minecraft! This could be due to bad network connection, incorrectly placed files, trying to download Minecraft from a Local account, etc..</string>
