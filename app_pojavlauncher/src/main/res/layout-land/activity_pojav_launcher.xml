@@ -293,16 +293,16 @@
             android:clickable="true"
             android:focusable="true" />
 
-        <!-- Account Spinner -->
+        <!-- Account Spinner: spinnerMode="dialog" makes this open as a centered
+             modal (like an AlertDialog) instead of an anchored dropdown, so it's
+             no longer at the mercy of how much space is left near the sidebar. -->
         <com.kdt.mcgui.mcAccountSpinner
             android:id="@+id/account_spinner"
             android:layout_width="56dp"
             android:layout_height="52dp"
             android:layout_marginBottom="6dp"
-            android:dropDownWidth="wrap_content"
-            android:dropDownHeight="220dp"
-            android:dropDownVerticalOffset="4dp"
-            android:dropDownHorizontalOffset="60dp"
+            android:spinnerMode="dialog"
+            android:prompt="@string/main_select_account"
             android:background="@drawable/bg_account_spinner" />
 
         <!-- Settings Button -->
