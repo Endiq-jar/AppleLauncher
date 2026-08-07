@@ -10,8 +10,8 @@
         android:id="@+id/account_spinner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_52sdp"
-        android:dropDownWidth="@dimen/_250sdp"
-        android:dropDownVerticalOffset="@dimen/_52sdp"
+        android:spinnerMode="dialog"
+        android:prompt="@string/main_select_account"
         app:layout_constraintTop_toTopOf="parent" />
     <ImageButton
         android:id="@+id/setting_button"
